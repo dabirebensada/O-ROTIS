@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { useLanguage } from '../context/LanguageContext';
@@ -14,7 +13,7 @@ const Home = () => {
         <div className="absolute inset-0">
           <img
             className="w-full h-[600px] object-cover"
-            src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2187&q=80"
+            src="/images/produits/marque.jpeg"
             alt="Produits de soin"
           />
           <div className="absolute inset-0 bg-plant-900/30 mix-blend-multiply" />
@@ -63,7 +62,7 @@ const Home = () => {
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+              src="/images/produits/groupe.jpeg"
               alt="Soins naturels"
               className="rounded-lg shadow-lg"
             />

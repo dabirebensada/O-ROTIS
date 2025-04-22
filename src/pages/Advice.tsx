@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLanguage, translations } from '../context/LanguageContext';
 
 const Advice = () => {

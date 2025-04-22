@@ -48,7 +48,7 @@ const ProductDetail = () => {
             <p className="text-plant-700 mb-8">{product.description}</p>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-plant-800 mb-4">Benefits</h2>
+              <h2 className="text-xl font-bold text-plant-800 mb-4">Bienfais</h2>
               <ul className="list-disc list-inside space-y-2">
                 {product.benefits.map((benefit, index) => (
                   <li key={index} className="text-plant-600">{benefit}</li>
@@ -57,7 +57,7 @@ const ProductDetail = () => {
             </div>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-plant-800 mb-4">Key Ingredients</h2>
+              <h2 className="text-xl font-bold text-plant-800 mb-4">Ingrédients</h2>
               <ul className="list-disc list-inside space-y-2">
                 {product.ingredients.map((ingredient, index) => (
                   <li key={index} className="text-plant-600">{ingredient}</li>
@@ -66,12 +66,12 @@ const ProductDetail = () => {
             </div>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-plant-800 mb-4">How to Use</h2>
+              <h2 className="text-xl font-bold text-plant-800 mb-4">Mode d'emploi</h2>
               <p className="text-plant-600">{product.usage}</p>
             </div>
 
             <div className="flex items-center space-x-4 mb-8">
-              <label htmlFor="quantity" className="text-plant-800">Quantity:</label>
+              <label htmlFor="quantity" className="text-plant-800">Quantité:</label>
               <input
                 type="number"
                 id="quantity"

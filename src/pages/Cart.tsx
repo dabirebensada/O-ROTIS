@@ -39,10 +39,9 @@ const Cart = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // Format the order details
-      const orderDetails = state.items.map(item => 
+      const orderDetails = state.items.map(item =>
         `${item.product.name} x${item.quantity} - ${item.product.price * item.quantity}€`
       ).join('\n');
 
@@ -57,18 +56,17 @@ const Cart = () => {
       };
 
       await emailjs.send(
-        'service_hy8wg4b', // Replace with your EmailJS service ID
-        'template_e0g2q8c', // Replace with your EmailJS template ID
+        'service_hy8wg4b',
+        'template_e0g2q8c',
         templateParams,
-        '_5RewudLI88MFMsA4' // Replace with your EmailJS public key
+        '_5RewudLI88MFMsA4'
       );
 
-      // Clear the cart and redirect to success page
       dispatch({ type: 'CLEAR_CART' });
       navigate('/order-success');
     } catch (error) {
       console.error('Failed to send email:', error);
-      alert(language === 'fr' 
+      alert(language === 'fr'
         ? 'Une erreur est survenue lors de l\'envoi de la commande. Veuillez réessayer.'
         : 'An error occurred while sending the order. Please try again.');
     } finally {
@@ -147,6 +145,7 @@ const Cart = () => {
             </button>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+              {/* Prénom / Nom */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-plant-800">
@@ -176,6 +175,7 @@ const Cart = () => {
                 </div>
               </div>
 
+              {/* Téléphone */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-plant-800">
                   {language === 'fr' ? 'Numéro de téléphone' : 'Phone Number'}
@@ -184,18 +184,19 @@ const Cart = () => {
                   type="tel"
                   id="phone"
                   required
-                  placeholder={language === 'fr' ? 'Ex: 22670123456' : 'Ex: 22670123456'}
+                  placeholder="Ex: 22670123456"
                   className="mt-1 block w-full rounded-md border-plant-300 shadow-sm focus:border-plant-500 focus:ring-plant-500"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
                 <p className="mt-1 text-sm text-plant-600">
-                  {language === 'fr' 
-                    ? 'Commencez par 226 (code pays du Burkina Faso) suivi de votre numéro' 
+                  {language === 'fr'
+                    ? 'Commencez par 226 (code pays du Burkina Faso) suivi de votre numéro'
                     : 'Start with 226 (Burkina Faso country code) followed by your number'}
                 </p>
               </div>
 
+              {/* Mode de livraison */}
               <div>
                 <label className="block text-sm font-medium text-plant-800 mb-2">
                   {language === 'fr' ? 'Mode de livraison' : 'Delivery Method'}
@@ -207,7 +208,7 @@ const Cart = () => {
                       name="deliveryMethod"
                       value="pickup"
                       checked={formData.deliveryMethod === 'pickup'}
-                      onChange={(e) => setFormData({ ...formData, deliveryMethod: 'pickup' as 'pickup' })}
+                      onChange={() => setFormData({ ...formData, deliveryMethod: 'pickup' })}
                       className="text-plant-600 focus:ring-plant-500"
                     />
                     <span className="ml-2">{language === 'fr' ? 'Retrait' : 'Pickup'}</span>
@@ -218,7 +219,7 @@ const Cart = () => {
                       name="deliveryMethod"
                       value="delivery"
                       checked={formData.deliveryMethod === 'delivery'}
-                      onChange={(e) => setFormData({ ...formData, deliveryMethod: 'delivery' as 'delivery' })}
+                      onChange={() => setFormData({ ...formData, deliveryMethod: 'delivery' })}
                       className="text-plant-600 focus:ring-plant-500"
                     />
                     <span className="ml-2">{language === 'fr' ? 'Livraison' : 'Delivery'}</span>
@@ -226,6 +227,7 @@ const Cart = () => {
                 </div>
               </div>
 
+              {/* Mode de paiement */}
               <div>
                 <label className="block text-sm font-medium text-plant-800 mb-2">
                   {language === 'fr' ? 'Mode de paiement' : 'Payment Method'}
@@ -237,7 +239,7 @@ const Cart = () => {
                       name="paymentMethod"
                       value="cash"
                       checked={formData.paymentMethod === 'cash'}
-                      onChange={(e) => setFormData({ ...formData, paymentMethod: 'cash' as 'cash' })}
+                      onChange={() => setFormData({ ...formData, paymentMethod: 'cash' })}
                       className="text-plant-600 focus:ring-plant-500"
                     />
                     <span className="ml-2">{language === 'fr' ? 'Espèces' : 'Cash'}</span>
@@ -248,14 +250,19 @@ const Cart = () => {
                       name="paymentMethod"
                       value="card"
                       checked={formData.paymentMethod === 'card'}
-                      onChange={(e) => setFormData({ ...formData, paymentMethod: 'card' as 'card' })}
+                      onChange={() => setFormData({ ...formData, paymentMethod: 'card' })}
                       className="text-plant-600 focus:ring-plant-500"
                     />
-                    <span className="ml-2">{language === 'fr' ? 'Carte' : 'Card'}</span>
+                    <span className="ml-2">
+                      {language === 'fr'
+                        ? 'Paiement Mobile (OrangeMoney / MoovMoney)'
+                        : 'Mobile Payment (OrangeMoney / MoovMoney)'}
+                    </span>
                   </label>
                 </div>
               </div>
 
+              {/* Submit */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -263,9 +270,9 @@ const Cart = () => {
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-plant-700'
                 }`}
               >
-                {isSubmitting 
-                  ? (language === 'fr' ? 'Envoi en cours...' : 'Sending...')
-                  : (language === 'fr' ? 'Confirmer la commande' : 'Confirm Order')}
+                {isSubmitting
+                  ? language === 'fr' ? 'Envoi en cours...' : 'Sending...'
+                  : language === 'fr' ? 'Confirmer la commande' : 'Confirm Order'}
               </button>
             </form>
           )}
