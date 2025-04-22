@@ -46,7 +46,7 @@ const Cart = () => {
       ).join('\n');
 
       const templateParams = {
-        to_email: 'santanalevel2@gmail.com',
+        to_email: 'sumayacontact.cosmetics@gmail.com',
         from_name: `${formData.firstName} ${formData.lastName}`,
         phone: formData.phone,
         delivery_method: formData.deliveryMethod === 'pickup' ? 'Retrait' : 'Livraison',

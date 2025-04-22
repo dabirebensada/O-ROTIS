@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -14,21 +14,21 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-white text-lg font-bold mb-4">About SUMAYA</h3>
+            <h3 className="text-white text-lg font-bold mb-4">À propos de SUMAYA</h3>
             <p className="text-plant-200">
-              Premium skincare products made with natural ingredients. Discover your perfect skincare routine with our curated collection.
+            Des soins haut de gamme à base d'ingrédients naturels. Découvrez votre routine de soin idéale grâce à notre sélection soignée.
             </p>
           </div>
           <div>
-            <h3 className="text-white text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="text-white text-lg font-bold mb-4">Liens rapides</h3>
             <ul className="space-y-2">
-              <li><Link to="/products" className="text-plant-200 hover:text-white">All Products</Link></li>
-              <li><Link to="/about" className="text-plant-200 hover:text-white">About Us</Link></li>
-              <li><Link to="/advice" className="text-plant-200 hover:text-white">Get Advice</Link></li>
+              <li><Link to="/products" className="text-plant-200 hover:text-white">Tous les Produits</Link></li>
+              <li><Link to="/about" className="text-plant-200 hover:text-white">À propos de nous</Link></li>
+              <li><Link to="/advice" className="text-plant-200 hover:text-white">Demandez Conseil</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-white text-lg font-bold mb-4">Customer Service</h3>
+            <h3 className="text-white text-lg font-bold mb-4">Service Client</h3>
             <ul className="space-y-2">
               <li>
                 <a 
@@ -37,7 +37,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-plant-200 hover:text-white"
                 >
-                  Contact Us
+                  Contact
                 </a>
               </li>
               <li>
@@ -47,7 +47,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-plant-200 hover:text-white"
                 >
-                  Shipping & Returns
+                  Livraisons & Retours
                 </a>
               </li>
               <li>
