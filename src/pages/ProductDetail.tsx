@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const { dispatch } = useCart();
+  const { language } = useLanguage();
 
   const product = products.find(p => p.id === Number(id));
 
@@ -30,7 +32,7 @@ const ProductDetail = () => {
           onClick={() => navigate(-1)}
           className="text-plant-600 hover:text-plant-800 mb-8 flex items-center"
         >
-          ← Back
+          ← {language === 'fr' ? 'Retour' : 'Back'}
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -44,20 +46,24 @@ const ProductDetail = () => {
 
           <div>
             <h1 className="text-3xl font-serif font-bold text-plant-800 mb-4">{product.name}</h1>
-            <p className="text-2xl text-plant-600 mb-6">${product.price}</p>
-            <p className="text-plant-700 mb-8">{product.description}</p>
+            <p className="text-2xl text-plant-600 mb-6">{product.price}€</p>
+            <p className="text-plant-700 mb-8">{product.description[language]}</p>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-plant-800 mb-4">Bienfais</h2>
+              <h2 className="text-xl font-bold text-plant-800 mb-4">
+                {language === 'fr' ? 'Bienfaits' : 'Benefits'}
+              </h2>
               <ul className="list-disc list-inside space-y-2">
-                {product.benefits.map((benefit, index) => (
+                {product.benefits[language].map((benefit, index) => (
                   <li key={index} className="text-plant-600">{benefit}</li>
                 ))}
               </ul>
             </div>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-plant-800 mb-4">Ingrédients</h2>
+              <h2 className="text-xl font-bold text-plant-800 mb-4">
+                {language === 'fr' ? 'Ingrédients' : 'Ingredients'}
+              </h2>
               <ul className="list-disc list-inside space-y-2">
                 {product.ingredients.map((ingredient, index) => (
                   <li key={index} className="text-plant-600">{ingredient}</li>
@@ -66,12 +72,16 @@ const ProductDetail = () => {
             </div>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-plant-800 mb-4">Mode d'emploi</h2>
-              <p className="text-plant-600">{product.usage}</p>
+              <h2 className="text-xl font-bold text-plant-800 mb-4">
+                {language === 'fr' ? 'Mode d\'emploi' : 'How to Use'}
+              </h2>
+              <p className="text-plant-600">{product.usage[language]}</p>
             </div>
 
             <div className="flex items-center space-x-4 mb-8">
-              <label htmlFor="quantity" className="text-plant-800">Quantité:</label>
+              <label htmlFor="quantity" className="text-plant-800">
+                {language === 'fr' ? 'Quantité' : 'Quantity'}:
+              </label>
               <input
                 type="number"
                 id="quantity"
@@ -86,7 +96,7 @@ const ProductDetail = () => {
               onClick={addToCart}
               className="w-full bg-plant-600 text-white px-8 py-3 rounded-md hover:bg-plant-700 transition-colors"
             >
-              Add to Cart
+              {language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}
             </button>
           </div>
         </div>

@@ -18,9 +18,29 @@ const Navbar = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate('/products');
+      // Ferme la barre de recherche après la soumission
+      setShowSearch(false);
+      // Ne navigue que si nous ne sommes pas déjà sur la page des produits
+      if (!window.location.pathname.includes('/products')) {
+        navigate('/products');
+      }
     }
   };
+
+  // Gère la fermeture de la recherche lors du clic en dehors
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (showSearch && !target.closest('.search-container')) {
+        setShowSearch(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSearch]);
 
   return (
     <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-plant-100">
@@ -38,33 +58,45 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-6">
             <LanguageSelector />
-            <div className="relative">
+            <div className="relative search-container">
               <button
                 onClick={() => setShowSearch(!showSearch)}
-                className="text-plant-800 hover:text-plant-600"
+                className="text-plant-800 hover:text-plant-600 transition-colors"
+                aria-label={showSearch ? t.nav.closeSearch : t.nav.openSearch}
               >
                 {showSearch ? <X size={20} /> : <Search size={20} />}
               </button>
               
-              {showSearch && (
-                <form onSubmit={handleSearch} className="absolute right-0 top-full mt-2 w-72">
+              <div className={`absolute right-0 transition-all duration-300 ease-in-out ${showSearch ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+                <form 
+                  onSubmit={handleSearch} 
+                  className="relative w-72 bg-white shadow-lg rounded-md overflow-hidden mt-2"
+                >
                   <div className="relative">
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={t.nav.search}
-                      className="w-full pl-4 pr-10 py-2 border border-plant-200 rounded-md focus:outline-none focus:ring-1 focus:ring-plant-500"
+                      className="w-full pl-4 pr-10 py-3 border border-plant-200 rounded-md focus:outline-none focus:ring-2 focus:ring-plant-500 focus:border-transparent"
+                      autoFocus={showSearch}
+                      aria-label={t.nav.search}
                     />
                     <button
                       type="submit"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-plant-400 hover:text-plant-600"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-plant-500 hover:text-plant-700 transition-colors"
+                      aria-label={t.nav.submitSearch}
                     >
-                      <Search size={16} />
+                      <Search size={18} />
                     </button>
                   </div>
+                  {searchQuery && (
+                    <div className="absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-md border border-t-0 border-plant-200 p-2 text-sm text-plant-600">
+                      {t.nav.searchHint}
+                    </div>
+                  )}
                 </form>
-              )}
+              </div>
             </div>
             
             <Link to="/cart" className="text-plant-800 hover:text-plant-600 relative">

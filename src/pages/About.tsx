@@ -1,3 +1,4 @@
+//import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../context/LanguageContext';
 
@@ -13,7 +14,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <img
-              src="/images/produits/logo.jpg"
+              src="images/produits/logo.jpg"
               alt="Notre histoire"
               className="rounded-lg shadow-lg"
             />

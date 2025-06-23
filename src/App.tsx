@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
@@ -12,7 +13,7 @@ import Cart from './pages/Cart';
 import Advice from './pages/Advice';
 import OrderSuccess from './pages/OrderSuccess';
 
-function App() {
+const App: React.FC = () => {
   return (
     <LanguageProvider>
       <CartProvider>
@@ -36,6 +37,6 @@ function App() {
       </CartProvider>
     </LanguageProvider>
   );
-}
+};
 
 export default App;

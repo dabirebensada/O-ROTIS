@@ -17,7 +17,8 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   );
 };
 
-export const useSearch = () => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const useSearch = (): SearchContextType => {
   const context = useContext(SearchContext);
   if (!context) {
     throw new Error('useSearch must be used within a SearchProvider');

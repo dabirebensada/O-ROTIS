@@ -113,7 +113,7 @@ const Cart = () => {
                 className="w-24 h-24 object-cover rounded-md"
               />
               <div className="flex-1">
-                <h3 className="text-lg font-medium text-plant-800">{item.product.name}</h3>
+                <h3 className="flex items-center gap-3 mt-1 text-plant-800 bg-white/50 p-3 rounded-md border border-plant-100 hover:bg-white transition-colors">{item.product.name}</h3>
                 <p className="text-plant-600">
                   {language === 'fr' ? 'Quantité' : 'Quantity'}: {item.quantity}
                 </p>
@@ -139,12 +139,12 @@ const Cart = () => {
           {!showForm ? (
             <button
               onClick={() => setShowForm(true)}
-              className="w-full bg-plant-600 text-white px-8 py-3 rounded-md hover:bg-plant-700 transition-colors"
+              className="w-full bg-plant-600 text-white px-8 py-3 rounded-md hover:bg-plant-700 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-70 flex items-center justify-center gap-2 shadow-md hover:shadow-plant-600/20"
             >
               {language === 'fr' ? 'Passer la commande' : 'Proceed to Checkout'}
             </button>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-md border border-plant-100">
               {/* Prénom / Nom */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -155,7 +155,7 @@ const Cart = () => {
                     type="text"
                     id="firstName"
                     required
-                    className="mt-1 block w-full rounded-md border-plant-300 shadow-sm focus:border-plant-500 focus:ring-plant-500"
+                    className="mt-1 block w-full rounded-md border border-plant-300 bg-white/90 shadow-sm focus:border-plant-500 focus:ring-2 focus:ring-plant-200 px-4 py-2 text-plant-800 placeholder-plant-400 transition-all duration-200"
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   />
@@ -168,7 +168,7 @@ const Cart = () => {
                     type="text"
                     id="lastName"
                     required
-                    className="mt-1 block w-full rounded-md border-plant-300 shadow-sm focus:border-plant-500 focus:ring-plant-500"
+                    className="mt-1 block w-full rounded-md border border-plant-300 bg-white/90 shadow-sm focus:border-plant-500 focus:ring-2 focus:ring-plant-200 px-4 py-2 text-plant-800 placeholder-plant-400 transition-all duration-200"
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                   />
@@ -185,7 +185,7 @@ const Cart = () => {
                   id="phone"
                   required
                   placeholder="Ex: 22670123456"
-                  className="mt-1 block w-full rounded-md border-plant-300 shadow-sm focus:border-plant-500 focus:ring-plant-500"
+                  className="mt-1 block w-full rounded-md border border-plant-300 bg-white/90 shadow-sm focus:border-plant-500 focus:ring-2 focus:ring-plant-200 px-4 py-2 text-plant-800 placeholder-plant-400 transition-all duration-200"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
@@ -202,28 +202,32 @@ const Cart = () => {
                   {language === 'fr' ? 'Mode de livraison' : 'Delivery Method'}
                 </label>
                 <div className="space-x-4">
-                  <label className="inline-flex items-center">
+                  <div key="pickup" className="flex items-center">
                     <input
-                      type="radio"
+                      id="pickup"
                       name="deliveryMethod"
-                      value="pickup"
+                      type="radio"
+                      className="h-4 w-4 text-plant-600 focus:ring-2 focus:ring-plant-200 border-plant-300"
                       checked={formData.deliveryMethod === 'pickup'}
                       onChange={() => setFormData({ ...formData, deliveryMethod: 'pickup' })}
-                      className="text-plant-600 focus:ring-plant-500"
                     />
-                    <span className="ml-2">{language === 'fr' ? 'Retrait' : 'Pickup'}</span>
-                  </label>
-                  <label className="inline-flex items-center">
+                    <label htmlFor="pickup" className="ml-3 block text-sm font-medium text-plant-700">
+                      {language === 'fr' ? 'Retrait en magasin' : 'Store Pickup'}
+                    </label>
+                  </div>
+                  <div key="delivery" className="flex items-center">
                     <input
-                      type="radio"
+                      id="delivery"
                       name="deliveryMethod"
-                      value="delivery"
+                      type="radio"
+                      className="h-4 w-4 text-plant-600 focus:ring-2 focus:ring-plant-200 border-plant-300"
                       checked={formData.deliveryMethod === 'delivery'}
                       onChange={() => setFormData({ ...formData, deliveryMethod: 'delivery' })}
-                      className="text-plant-600 focus:ring-plant-500"
                     />
-                    <span className="ml-2">{language === 'fr' ? 'Livraison' : 'Delivery'}</span>
-                  </label>
+                    <label htmlFor="delivery" className="ml-3 block text-sm font-medium text-plant-700">
+                      {language === 'fr' ? 'Livraison' : 'Delivery'}
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -233,32 +237,34 @@ const Cart = () => {
                   {language === 'fr' ? 'Mode de paiement' : 'Payment Method'}
                 </label>
                 <div className="space-x-4">
-                  <label className="inline-flex items-center">
+                  <div key="cash" className="flex items-center">
                     <input
-                      type="radio"
+                      id="cash"
                       name="paymentMethod"
-                      value="cash"
+                      type="radio"
+                      className="h-4 w-4 text-plant-600 focus:ring-2 focus:ring-plant-200 border-plant-300"
                       checked={formData.paymentMethod === 'cash'}
                       onChange={() => setFormData({ ...formData, paymentMethod: 'cash' })}
-                      className="text-plant-600 focus:ring-plant-500"
                     />
-                    <span className="ml-2">{language === 'fr' ? 'Espèces' : 'Cash'}</span>
-                  </label>
-                  <label className="inline-flex items-center">
+                    <label htmlFor="cash" className="ml-3 block text-sm font-medium text-plant-700">
+                      {language === 'fr' ? 'Paiement à la livraison' : 'Cash on Delivery'}
+                    </label>
+                  </div>
+                  <div key="card" className="flex items-center">
                     <input
-                      type="radio"
+                      id="card"
                       name="paymentMethod"
-                      value="card"
+                      type="radio"
+                      className="h-4 w-4 text-plant-600 focus:ring-2 focus:ring-plant-200 border-plant-300"
                       checked={formData.paymentMethod === 'card'}
                       onChange={() => setFormData({ ...formData, paymentMethod: 'card' })}
-                      className="text-plant-600 focus:ring-plant-500"
                     />
-                    <span className="ml-2">
+                    <label htmlFor="card" className="ml-3 block text-sm font-medium text-plant-700">
                       {language === 'fr'
                         ? 'Paiement Mobile (OrangeMoney / MoovMoney)'
                         : 'Mobile Payment (OrangeMoney / MoovMoney)'}
-                    </span>
-                  </label>
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -266,9 +272,7 @@ const Cart = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full bg-plant-600 text-white px-8 py-3 rounded-md transition-colors ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-plant-700'
-                }`}
+                className="w-full bg-plant-600 text-white px-8 py-3 rounded-md hover:bg-plant-700 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-70 flex items-center justify-center gap-2 shadow-md hover:shadow-plant-600/20 mt-4"
               >
                 {isSubmitting
                   ? language === 'fr' ? 'Envoi en cours...' : 'Sending...'

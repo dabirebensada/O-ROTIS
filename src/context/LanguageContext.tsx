@@ -1,6 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
 
-type Language = 'fr' | 'en';
+export type Language = 'fr' | 'en';
 
 interface Translations {
   [key: string]: {
@@ -9,6 +10,10 @@ interface Translations {
       products: string;
       advice: string;
       search: string;
+      closeSearch: string;
+      openSearch: string;
+      submitSearch: string;
+      searchHint: string;
     };
     home: {
       hero: {
@@ -57,7 +62,18 @@ interface Translations {
       description: string;
       cta: string;
     };
+    products: {
+      title: string;
+      searchResult: string;
+      noResults: string;
+      clearSearch: string;
+    };
   };
+}
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (language: Language) => void;
 }
 
 export const translations: Translations = {
@@ -66,7 +82,11 @@ export const translations: Translations = {
       about: 'À propos',
       products: 'Produits',
       advice: 'Conseils',
-      search: 'Rechercher des produits...'
+      search: 'Rechercher des produits...',
+      closeSearch: 'Fermer la recherche',
+      openSearch: 'Ouvrir la recherche',
+      submitSearch: 'Rechercher',
+      searchHint: 'Appuyez sur Entrée pour rechercher'
     },
     home: {
       hero: {
@@ -85,35 +105,41 @@ export const translations: Translations = {
       title: "À propos de SUMAYA COSMETICS",
       story: {
         title: "Notre Histoire",
-        p1: "Fondée en 2020, SUMAYA COSMETICS est née d'une passion pour les soins naturels et d'un engagement à créer des produits qui fonctionnent en harmonie avec votre peau. Notre fondatrice, Sarah Sumaya, a passé des années à rechercher les ingrédients naturels et leurs bienfaits avant de lancer notre première collection.",
-        p2: "Nous croyons que les soins de la peau doivent être à la fois efficaces et doux, utilisant le pouvoir de la nature combiné à l'innovation scientifique pour offrir des résultats réels."
+        p1: "Fondée en 2020, SUMAYA COSMETICS est née d'une passion pour les soins naturels...",
+        p2: "Nous croyons que les soins de la peau doivent être à la fois efficaces et doux..."
       },
       values: {
         title: "Nos Valeurs",
         natural: {
           title: "Ingrédients Naturels",
-          description: "Nous sélectionnons les ingrédients naturels de la plus haute qualité, garantissant que chaque produit est à la fois efficace et doux pour votre peau."
+          description: "Nous sélectionnons les ingrédients naturels de la plus haute qualité..."
         },
         sustainability: {
           title: "Durabilité",
-          description: "Notre engagement envers l'environnement s'étend de nos ingrédients à nos emballages, choisissant des options écologiques chaque fois que possible."
+          description: "Notre engagement envers l'environnement s'étend de nos ingrédients à nos emballages..."
         },
         transparency: {
           title: "Transparence",
-          description: "Nous croyons en la transparence totale concernant nos ingrédients et nos processus, vous permettant de savoir exactement ce que vous appliquez sur votre peau."
+          description: "Nous croyons en la transparence totale concernant nos ingrédients et nos processus..."
         }
       },
       quality: {
         title: "Notre Engagement pour la Qualité",
-        p1: "Chaque produit SUMAYA COSMETICS subit des tests rigoureux et un contrôle qualité. Nous travaillons avec des dermatologues et des experts en soins de la peau pour garantir que nos formulations sont à la fois efficaces et sûres pour tous les types de peau.",
-        p2: "Nous ne faisons jamais de compromis sur la qualité et nous nous engageons à innover continuellement dans les soins naturels, en restant toujours fidèles à nos principes fondateurs d'utilisation d'ingrédients propres et efficaces qui donnent des résultats réels."
+        p1: "Chaque produit SUMAYA COSMETICS subit des tests rigoureux...",
+        p2: "Nous ne faisons jamais de compromis sur la qualité..."
       }
     },
     advice: {
       title: "Conseils Skincare",
       subtitle: "Besoin de conseils personnalisés ?",
-      description: "Nos experts en soins de la peau sont là pour vous aider à trouver les produits adaptés à votre type de peau et à vos besoins. Cliquez sur le bouton ci-dessous pour discuter avec l'un de nos spécialistes sur WhatsApp.",
+      description: "Nos experts en soins de la peau sont là pour vous aider...",
       cta: "Discutez avec un spécialiste"
+    },
+    products: {
+      title: "Nos Produits",
+      searchResult: 'Résultats pour "{query}" ({count} articles)',
+      noResults: "Aucun produit ne correspond à votre recherche.",
+      clearSearch: "Réinitialiser la recherche"
     }
   },
   en: {
@@ -121,7 +147,11 @@ export const translations: Translations = {
       about: 'About',
       products: 'Products',
       advice: 'Advice',
-      search: 'Search products...'
+      search: 'Search products...',
+      closeSearch: 'Close search',
+      openSearch: 'Open search',
+      submitSearch: 'Search',
+      searchHint: 'Press Enter to search'
     },
     home: {
       hero: {
@@ -132,7 +162,7 @@ export const translations: Translations = {
       featured: "Featured Products",
       promise: {
         title: "Our Promise",
-        description: "We are committed to providing you with the highest quality natural care products, sourced responsibly and made with love.",
+        description: "We are committed to providing you with the highest quality...",
         cta: "Learn More"
       }
     },
@@ -140,43 +170,44 @@ export const translations: Translations = {
       title: "About SUMAYA COSMETICS",
       story: {
         title: "Our Story",
-        p1: "Founded in 2020, SUMAYA COSMETICS was born from a passion for natural skincare and a commitment to creating products that work in harmony with your skin. Our founder, Sarah Sumaya, spent years researching natural ingredients and their benefits before launching our first collection.",
-        p2: "We believe that skincare should be both effective and gentle, using the power of nature combined with scientific innovation to deliver real results."
+        p1: "Founded in 2020, SUMAYA COSMETICS was born from a passion...",
+        p2: "We believe that skincare should be both effective and gentle..."
       },
       values: {
         title: "Our Values",
         natural: {
           title: "Natural Ingredients",
-          description: "We source the highest quality natural ingredients, ensuring each product is both effective and gentle on your skin."
+          description: "We source the highest quality natural ingredients..."
         },
         sustainability: {
           title: "Sustainability",
-          description: "Our commitment to the environment extends from our ingredients to our packaging, choosing eco-friendly options whenever possible."
+          description: "Our commitment to the environment extends..."
         },
         transparency: {
           title: "Transparency",
-          description: "We believe in being completely transparent about our ingredients and processes, ensuring you know exactly what you're putting on your skin."
+          description: "We believe in being completely transparent..."
         }
       },
       quality: {
         title: "Our Commitment to Quality",
-        p1: "Every SUMAYA COSMETICS product undergoes rigorous testing and quality control. We work with leading dermatologists and skincare experts to ensure our formulations are both effective and safe for all skin types.",
-        p2: "We never compromise on quality and are committed to continuous innovation in natural skincare, always staying true to our founding principles of using clean, effective ingredients that deliver real results."
+        p1: "Every SUMAYA COSMETICS product undergoes rigorous testing...",
+        p2: "We never compromise on quality and are committed to innovation..."
       }
     },
     advice: {
       title: "Skincare Advice",
       subtitle: "Need Personalized Advice?",
-      description: "Our skincare experts are here to help you find the right products for your skin type and needs. Click the button below to chat with one of our specialists on WhatsApp.",
+      description: "Our skincare experts are here to help you...",
       cta: "Chat with a Specialist"
+    },
+    products: {
+      title: "Our Products",
+      searchResult: 'Showing results for "{query}" ({count} items)',
+      noResults: "No products found matching your search.",
+      clearSearch: "Clear search"
     }
   }
 };
-
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (language: Language) => void;
-}
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
@@ -190,7 +221,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   );
 };
 
-export const useLanguage = () => {
+export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');

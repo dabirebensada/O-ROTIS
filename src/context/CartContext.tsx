@@ -15,10 +15,12 @@ type CartAction =
   | { type: 'REMOVE_FROM_CART'; payload: { productId: number } }
   | { type: 'CLEAR_CART' };
 
-const CartContext = createContext<{
+interface CartContextType {
   state: CartState;
   dispatch: React.Dispatch<CartAction>;
-} | undefined>(undefined);
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
@@ -63,7 +65,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-export const useCart = () => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
   if (context === undefined) {
     throw new Error('useCart must be used within a CartProvider');
