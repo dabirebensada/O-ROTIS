@@ -35,7 +35,7 @@ export const products: Product[] = [
       en: "Purifying face mask (Men and Women)"
     },
     price: 58,
-    image: "/images/produits/douceurdemiel.png",
+    image: "/images/produits/douceurdemiel.webp",
     benefits: {
       fr: ["Révélateur d'éclat", "Nourrissant", "Anti-taches et boutons", "Antiseptique"],
       en: ["Radiance revealing", "Nourishing", "Anti-spots and pimples", "Antiseptic"]
@@ -58,7 +58,7 @@ export const products: Product[] = [
       en: "Body Care (Men and Women)"
     },
     price: 65,
-    image: "/images/produits/eaucrystal.png",
+    image: "/images/produits/eaucrystal.webp",
     benefits: {
       fr: ["Élimine toutes les odeurs corporelles", "Élimine les boutons d'après rasage"],
       en: ["Eliminates all body odors", "Eliminates post-shave bumps"]
@@ -81,7 +81,7 @@ export const products: Product[] = [
       en: "Eye Contour Oil (Men and Women)"
     },
     price: 38,
-    image: "/images/produits/elixir.png",
+    image: "/images/produits/elixir.webp",
     benefits: {
       fr: ["Éclaircit le contour des yeux", "Estompe les signes de fatigue"],
       en: ["Brightens eye contour", "Fades signs of fatigue"]
@@ -104,7 +104,7 @@ export const products: Product[] = [
       en: "Satin Body and Face Oil (Men and Women)"
     },
     price: 75,
-    image: "/images/produits/gold.png",
+    image: "/images/produits/gold.webp",
     benefits: {
       fr: ["Combat vergetures, rides et acnés", "Protège des rayons UV", "Scelle l'hydratation et satine la peau"],
       en: ["Fights stretch marks, wrinkles and acne", "Protects from UV rays", "Seals hydration and makes skin satiny"]
@@ -127,7 +127,7 @@ export const products: Product[] = [
       en: "Purifying Face Foam (Men and Women)"
     },
     price: 68,
-    image: "/images/produits/sania.png",
+    image: "/images/produits/sania.webp",
     benefits: {
       fr: ["Exfoliation Douce", "Pureté et Éclat", "Prévient les boutons", "Antiseptique"],
       en: ["Gentle Exfoliation", "Purity and Radiance", "Prevents pimples", "Antiseptic"]
@@ -150,7 +150,7 @@ export const products: Product[] = [
       en: "Cleansing Care for body and face (Men and Women)"
     },
     price: 45,
-    image: "/images/produits/siropdebain.png",
+    image: "/images/produits/siropdebain.webp",
     benefits: {
       fr: ["Exfoliant", "Nourrissant", "Raviveur d'éclat", "Antiseptique"],
       en: ["Exfoliating", "Nourishing", "Radiance booster", "Antiseptic"]
@@ -173,7 +173,7 @@ export const products: Product[] = [
       en: "Face and body scrub (Men and Women)"
     },
     price: 62,
-    image: "/images/produits/smoothie.png",
+    image: "/images/produits/smoothie.webp",
     benefits: {
       fr: ["Élimine les peaux mortes", "Élimine les points noirs et blancs", "Laisse la peau très douce et éclatante"],
       en: ["Removes dead skin", "Eliminates blackheads and whiteheads", "Leaves skin very soft and radiant"]

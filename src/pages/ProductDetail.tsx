@@ -36,11 +36,14 @@ const ProductDetail = () => {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+          <div className="w-full">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full rounded-lg shadow-lg"
+              className="w-full h-auto rounded-lg shadow-lg"
+              width={600}
+              height={600}
+              loading="eager"
             />
           </div>
 

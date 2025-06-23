@@ -1,8 +1,8 @@
-//import React from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../context/LanguageContext';
+
 
 const Home = () => {
   const { language } = useLanguage();
@@ -15,15 +15,12 @@ const Home = () => {
         {/* Image d'arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <img
-            className="w-full h-full object-cover object-center"
-            src="/images/produits/marque.png"
+            src="/images/produits/marque.webp"
             alt="Produits de soin"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-              width: '100%',
-              height: '100%'
-            }}
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            width="100%"
+            height="100%"
           />
           {/* Overlay pour améliorer la lisibilité du texte */}
           <div className="absolute inset-0 bg-gradient-to-r from-plant-900/70 to-plant-900/30" />
@@ -73,6 +70,9 @@ const Home = () => {
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width={400}
+                  height={320}
                 />
               </div>
               <div className="p-6">
@@ -109,9 +109,10 @@ const Home = () => {
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
           <div className="relative">
             <img
-              src="images/produits/groupe.jpeg"
+              src="images/produits/groupe.webp"
               alt="Soins naturels"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg w-full h-auto"
+              loading="lazy"
             />
           </div>
           <div className="mt-10 lg:mt-0 lg:pl-8">

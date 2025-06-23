@@ -14,9 +14,10 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <img
-              src="images/produits/logo.jpg"
+              src="images/produits/logo.webp"
               alt="Notre histoire"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg w-full h-auto"
+              loading="lazy"
             />
           </div>
           
