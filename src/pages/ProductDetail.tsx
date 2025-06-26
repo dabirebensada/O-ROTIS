@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
+import ProductAvailability from '../components/ProductAvailability';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -48,8 +49,11 @@ const ProductDetail = () => {
           </div>
 
           <div>
-            <h1 className="text-3xl font-serif font-bold text-plant-800 mb-4">{product.name}</h1>
-            <p className="text-2xl text-plant-600 mb-6">{product.price}€</p>
+            <h1 className="text-3xl font-serif font-bold text-plant-800 mb-2">{product.name}</h1>
+            <p className="text-2xl text-plant-600 mb-2">{product.price}€</p>
+            <div className="mb-4">
+              <ProductAvailability available={product.available} />
+            </div>
             <p className="text-plant-700 mb-8">{product.description[language]}</p>
 
             <div className="mb-8">

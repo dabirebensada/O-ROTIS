@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../context/LanguageContext';
+import ProductAvailability from '../components/ProductAvailability';
 
 
 const Home = () => {
@@ -82,6 +83,7 @@ const Home = () => {
                 <p className="text-plant-600 text-lg font-medium">
                   {product.price.toFixed(2)} €
                 </p>
+                <ProductAvailability available={product.available} />
                 <div className="mt-4">
                   <span className="inline-flex items-center text-plant-600 group-hover:text-plant-800 transition-colors">
                     {language === 'fr' ? 'Découvrir' : 'Discover'}

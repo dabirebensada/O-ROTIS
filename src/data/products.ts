@@ -20,12 +20,14 @@ export interface Product {
     fr: string;
     en: string;
   };
+  available: boolean; // true = en stock, false = épuisé
 }
 
 export const products: Product[] = [
   {
     id: 1,
     name: "DOUCEUR DE MIEL",
+    available: true,
     description: {
       fr: "Un masque purifiant naturel qui combine le pouvoir du miel et des épices pour une peau éclatante et nette",
       en: "A natural purifying mask that combines the power of honey and spices for radiant and clear skin"
@@ -49,6 +51,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: "EAU CRYSTAL",
+    available: true,
     description: {
       fr: "Une solution rafraîchissante pour une hygiène corporelle optimale",
       en: "A refreshing solution for optimal body hygiene"
@@ -72,6 +75,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: "ELIXIR",
+    available: true,
     description: {
       fr: "Une huile précieuse pour illuminer et revitaliser le contour des yeux",
       en: "A precious oil to illuminate and revitalize the eye contour"
@@ -95,6 +99,7 @@ export const products: Product[] = [
   {
     id: 4,
     name: "GOLD",
+    available: false,
     description: {
       fr: "Une huile luxueuse pour une peau rayonnante et protégée",
       en: "A luxurious oil for radiant and protected skin"
@@ -118,6 +123,7 @@ export const products: Product[] = [
   {
     id: 5,
     name: "SANIA",
+    available: true,
     description: {
       fr: "Une mousse douce et efficace pour une peau purifiée en profondeur",
       en: "A gentle and effective foam for deeply purified skin"
@@ -141,6 +147,7 @@ export const products: Product[] = [
   {
     id: 6,
     name: "SIROP DE BAIN",
+    available: true,
     description: {
       fr: "Un soin lavant doux et nourrissant pour une expérience de bain luxueuse",
       en: "A gentle and nourishing cleansing care for a luxurious bath experience"
@@ -164,6 +171,7 @@ export const products: Product[] = [
   {
     id: 7,
     name: "SMOOTHIE",
+    available: true,
     description: {
       fr: "Un gommage doux et efficace pour une peau lisse et éclatante",
       en: "A gentle and effective scrub for smooth and radiant skin"

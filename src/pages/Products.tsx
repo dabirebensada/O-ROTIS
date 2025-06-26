@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { useSearch } from '../context/SearchContext';
 import { useLanguage, translations } from '../context/LanguageContext';
+import ProductAvailability from '../components/ProductAvailability';
 
 
 const Products = () => {
@@ -96,10 +97,11 @@ const Products = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-medium text-plant-800 mb-2">{product.name}</h3>
-                  <p className="text-plant-600 mb-4">
+                  <p className="text-plant-600 mb-2">
                     {product.shortDescription[language]}
                   </p>
-                  <p className="text-xl font-semibold text-plant-800">${product.price}</p>
+                  <p className="text-xl font-semibold text-plant-800 mb-2">{product.price} €</p>
+                  <ProductAvailability available={product.available} />
                 </div>
               </Link>
             ))}
