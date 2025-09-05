@@ -1,14 +1,19 @@
 //import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { createSecureWhatsAppLink } from '../utils/security';
 
 const Footer = () => {
   const whatsappNumber = '+22654180810';
-  const whatsappBaseUrl = `https://wa.me/${whatsappNumber}`;
   const { language } = useLanguage();
 
   const createWhatsAppLink = (message: string) => {
-    return `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+    try {
+      return createSecureWhatsAppLink(whatsappNumber, message);
+    } catch (error) {
+      console.error('Erreur lors de la création du lien WhatsApp:', error);
+      return '#';
+    }
   };
 
   const translations = {

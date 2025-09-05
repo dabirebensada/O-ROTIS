@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Standard } from "@typebot.io/react";
 import { MessageCircle, ArrowLeft, Check, Phone, Send } from 'lucide-react';
+import { validatePhoneNumber, sanitizeInput, createSecureWhatsAppLink, rateLimiter } from '../utils/security';
 
 const Products = () => {
   const { language } = useLanguage();
@@ -10,6 +11,7 @@ const Products = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleStartOrder = () => {
     setShowTypebot(true);
@@ -27,23 +29,57 @@ const Products = () => {
   };
 
   const handlePhoneSubmit = () => {
-    if (phoneNumber.trim()) {
-      setCurrentStep(3);
+    setError('');
+    
+    // Nettoyer l'entrée
+    const cleanPhone = sanitizeInput(phoneNumber);
+    
+    // Valider le numéro
+    if (!validatePhoneNumber(cleanPhone)) {
+      setError(language === 'fr' 
+        ? 'Veuillez entrer un numéro de téléphone valide (ex: +226XXXXXXXX)'
+        : 'Please enter a valid phone number (ex: +226XXXXXXXX)'
+      );
+      return;
     }
+    
+    // Rate limiting
+    if (!rateLimiter.isAllowed('phone-submit', 3, 60000)) {
+      setError(language === 'fr'
+        ? 'Trop de tentatives. Veuillez patienter avant de réessayer.'
+        : 'Too many attempts. Please wait before trying again.'
+      );
+      return;
+    }
+    
+    setPhoneNumber(cleanPhone);
+    setCurrentStep(3);
   };
 
   const handleFinalSubmit = async () => {
     if (!phoneNumber.trim()) return;
     
     setIsSubmitting(true);
+    setError('');
     
     try {
-      // Créer un message WhatsApp avec instructions
+      // Rate limiting pour la soumission finale
+      if (!rateLimiter.isAllowed('final-submit', 2, 300000)) { // 2 tentatives par 5 minutes
+        setError(language === 'fr'
+          ? 'Trop de soumissions. Veuillez patienter avant de réessayer.'
+          : 'Too many submissions. Please wait before trying again.'
+        );
+        return;
+      }
+      
+      // Créer un message WhatsApp sécurisé
       const message = `Nouvelle commande O'ROTIS\n\nNuméro du client: ${phoneNumber}\n\n📸 IMPORTANT: Veuillez joindre votre capture d'écran du récapitulatif de commande à ce message.`;
       
+      // Créer le lien WhatsApp sécurisé
+      const whatsappUrl = createSecureWhatsAppLink('+22654180810', message);
+      
       // Ouvrir WhatsApp avec le message
-      const whatsappUrl = `https://wa.me/22654180810?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       
       // Rediriger vers la page de remerciement après un délai
       setTimeout(() => {
@@ -52,6 +88,10 @@ const Products = () => {
       
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
+      setError(language === 'fr'
+        ? 'Erreur lors de l\'envoi. Veuillez réessayer.'
+        : 'Error sending. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -133,15 +173,25 @@ const Products = () => {
                     <input
                       type="tel"
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                        setError(''); // Effacer l'erreur quand l'utilisateur tape
+                      }}
                       placeholder={language === 'fr' ? 'Ex: 22670123456' : 'Ex: 22670123456'}
                       className="w-full px-4 py-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-center text-lg"
+                      maxLength={15}
                     />
                     <p className="text-sm text-orange-500 mt-2">
                       {language === 'fr' 
                         ? 'Commencez par 226 (code pays du Burkina Faso)'
                         : 'Start with 226 (Burkina Faso country code)'}
                     </p>
+                    
+                    {error && (
+                      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mt-4">
+                        {error}
+                      </div>
+                    )}
                   </div>
                   <button
                     onClick={handlePhoneSubmit}
@@ -179,6 +229,12 @@ const Products = () => {
                       <p>• {language === 'fr' ? 'Cliquez sur l\'icône 📎 pour joindre votre capture' : 'Click the 📎 icon to attach your screenshot'}</p>
                     </div>
                   </div>
+                  
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
+                      {error}
+                    </div>
+                  )}
                   
                   <button
                     onClick={handleFinalSubmit}

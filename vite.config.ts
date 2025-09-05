@@ -15,14 +15,11 @@ export default defineConfig(({ mode }) => ({
       brotliSize: true,
     }),
     viteCompression({
-      algorithm: 'brotliCompress',
-      ext: '.br',
-      deleteOriginFile: false,
-    } as any),
+      algorithms: ['brotli'],
+    }),
     viteCompression({
-      algorithm: 'gzip',
-      ext: '.gz',
-    } as any),
+      algorithms: ['gzip'],
+    }),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -38,19 +35,27 @@ export default defineConfig(({ mode }) => ({
     target: 'esnext',
     minify: 'terser',
     cssMinify: true,
+    sourcemap: false, // Pas de sourcemap en production pour la sécurité
     rollupOptions: {
       output: {
         manualChunks: {
           react: ['react', 'react-dom', 'react-router-dom'],
-          vendor: ['lucide-react'],
+          vendor: ['lucide-react', 'dompurify'],
+          typebot: ['@typebot.io/react'],
         },
+        // Obfuscation des noms de fichiers
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : [],
       },
+      mangle: false, // Désactiver l'obfuscation pour éviter les conflits avec Typebot
     },
   },
   optimizeDeps: {

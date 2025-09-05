@@ -74,6 +74,27 @@ const Home = () => {
         <div className="absolute bottom-20 left-20 w-16 h-16 bg-red-500/20 rounded-full animate-float hidden sm:block" style={{ animationDelay: '1s' }}></div>
       </div>
 
+      {/* Section de statistiques avec animations - Optimisée Mobile */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-white scroll-reveal">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div className="text-center card-hover-effect p-4 sm:p-6 rounded-lg bg-orange-50">
+            <div className="text-3xl sm:text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom">100%</div>
+            <div className="text-orange-800 font-semibold text-sm sm:text-base">{language === 'fr' ? 'Naturel' : 'Natural'}</div>
+          </div>
+          <div className="text-center card-hover-effect p-4 sm:p-6 rounded-lg bg-orange-50">
+            <div className="text-orange-800 font-semibold text-sm sm:text-base mb-2">{language === 'fr' ? 'Disponible' : 'Available'}</div>
+            <div className="text-lg sm:text-2xl md:text-4xl font-bold text-orange-600 animate-pulse-custom" style={{ animationDelay: '0.5s' }}>
+              <span className="hidden sm:inline">mardi à dimanche, 18h à 23h</span>
+              <span className="sm:hidden">mardi à dimanche, 18h à 23h</span>
+            </div>
+          </div>
+          <div className="text-center card-hover-effect p-4 sm:p-6 rounded-lg bg-orange-50 sm:col-span-2 md:col-span-1">
+            <div className="text-3xl sm:text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom" style={{ animationDelay: '1s' }}>5★</div>
+            <div className="text-orange-800 font-semibold text-sm sm:text-base">{language === 'fr' ? 'Satisfaction' : 'Satisfaction'}</div>
+          </div>
+        </div>
+      </section>
+
       {/* Section Promesse avec animations - Optimisée Mobile */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 bg-gradient-to-br from-orange-50 to-orange-100 scroll-reveal">
         <div className="text-center mb-8 sm:mb-12">
@@ -134,27 +155,6 @@ const Home = () => {
                 {t.home.promise.cta}
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section de statistiques avec animations - Optimisée Mobile */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-white">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          <div className="text-center card-hover-effect p-4 sm:p-6 rounded-lg bg-orange-50">
-            <div className="text-3xl sm:text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom">100%</div>
-            <div className="text-orange-800 font-semibold text-sm sm:text-base">{language === 'fr' ? 'Naturel' : 'Natural'}</div>
-          </div>
-          <div className="text-center card-hover-effect p-4 sm:p-6 rounded-lg bg-orange-50">
-            <div className="text-orange-800 font-semibold text-sm sm:text-base mb-2">{language === 'fr' ? 'Disponible' : 'Available'}</div>
-            <div className="text-lg sm:text-2xl md:text-4xl font-bold text-orange-600 animate-pulse-custom" style={{ animationDelay: '0.5s' }}>
-              <span className="hidden sm:inline">mardi à dimanche, 18h à 23h</span>
-              <span className="sm:hidden">mardi à dimanche, 18h à 23h</span>
-            </div>
-          </div>
-          <div className="text-center card-hover-effect p-4 sm:p-6 rounded-lg bg-orange-50 sm:col-span-2 md:col-span-1">
-            <div className="text-3xl sm:text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom" style={{ animationDelay: '1s' }}>5★</div>
-            <div className="text-orange-800 font-semibold text-sm sm:text-base">{language === 'fr' ? 'Satisfaction' : 'Satisfaction'}</div>
           </div>
         </div>
       </section>
