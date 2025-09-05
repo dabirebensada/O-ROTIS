@@ -1,46 +1,66 @@
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../context/LanguageContext';
-import ProductAvailability from '../components/ProductAvailability';
-
+import { useEffect, useState } from 'react';
 
 const Home = () => {
   const { language } = useLanguage();
   const t = translations[language];
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    // Animation au scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('.scroll-reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div>
       {/* Section Héro avec image d'arrière-plan */}
       <div className="relative overflow-hidden h-[90vh] min-h-[600px] max-h-[800px] w-full">
-        {/* Image d'arrière-plan */}
+        {/* Image d'arrière-plan avec effet parallaxe */}
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/produits/marque.webp"
-            alt="Produits de soin"
-            className="w-full h-full object-cover object-center"
+            src="/images/produits/hooome.png"
+            alt="Poulet rôtis traditionnel"
+            className="w-full h-full object-cover object-center image-hover-effect"
             loading="eager"
             width="100%"
             height="100%"
           />
-          {/* Overlay pour améliorer la lisibilité du texte */}
-          <div className="absolute inset-0 bg-gradient-to-r from-plant-900/70 to-plant-900/30" />
+          {/* Overlay animé pour améliorer la lisibilité du texte */}
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/70 to-red-900/30 animate-fade-in-up" />
         </div>
         
-        {/* Contenu texte */}
+        {/* Contenu texte avec animations */}
         <div className="relative h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight">
+            <div className={`max-w-2xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight text-shadow animate-fade-in-up">
                 {t.home.hero.title}
               </h1>
-              <p className="mt-6 text-xl text-white/90 max-w-2xl">
+              <p className="mt-6 text-xl text-white/90 max-w-2xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 {t.home.hero.subtitle}
               </p>
-              <div className="mt-10">
+              <div className="mt-10 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                 <Link
                   to="/products"
-                  className="inline-block bg-plant-600 hover:bg-plant-700 text-white px-8 py-4 text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105"
+                  className="inline-block bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg font-medium rounded-md btn-hover-effect animate-pulse-custom"
                 >
                   {t.home.hero.cta}
                 </Link>
@@ -48,86 +68,90 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        {/* Éléments décoratifs flottants */}
+        <div className="absolute top-20 right-20 w-20 h-20 bg-orange-500/20 rounded-full animate-float hidden lg:block"></div>
+        <div className="absolute bottom-20 left-20 w-16 h-16 bg-red-500/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      {/* Section Produits Vedettes */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      {/* Section Promesse avec animations */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-orange-50 to-orange-100 scroll-reveal">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-plant-800 mb-4">
-            {t.home.featured}
+          <h2 className="text-4xl font-serif font-bold text-orange-800 mb-4 animate-fade-in-up text-shadow">
+            {t.home.promise.title}
           </h2>
-          <div className="w-24 h-1 bg-plant-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto animate-scale-in"></div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {products.slice(0, 3).map((product) => (
-            <Link 
-              to={`/product/${product.id}`} 
-              key={product.id} 
-              className="group block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-white"
-            >
-              <div className="relative overflow-hidden h-80 w-full">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  width={400}
-                  height={320}
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-plant-800 mb-2 line-clamp-2 h-14 flex items-center">
-                  {product.name}
-                </h3>
-                <p className="text-plant-600 text-lg font-medium">
-                  {product.price.toFixed(2)} €
-                </p>
-                <ProductAvailability available={product.available} />
-                <div className="mt-4">
-                  <span className="inline-flex items-center text-plant-600 group-hover:text-plant-800 transition-colors">
-                    {language === 'fr' ? 'Découvrir' : 'Discover'}
-                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+          <div className="relative group animate-fade-in-left">
+            <img
+              src="/images/produits/promesse.png"
+              alt="Poulet rôtis traditionnel"
+              className="rounded-lg shadow-2xl w-full h-auto image-hover-effect"
+              loading="lazy"
+            />
+            {/* Badge flottant */}
+            <div className="absolute -top-4 -right-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse-custom shadow-lg">
+              {language === 'fr' ? 'QUALITÉ' : 'QUALITY'}
+            </div>
+            {/* Overlay décoratif */}
+            <div className="absolute inset-0 bg-gradient-to-t from-orange-900/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          
+          <div className="mt-10 lg:mt-0 animate-fade-in-right">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+              <p className="text-xl text-orange-700 mb-8 leading-relaxed">
+                {t.home.promise.description}
+              </p>
+              
+              {/* Points clés */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full mr-3 animate-pulse-custom"></div>
+                  <span className="text-orange-700 font-medium">
+                    {language === 'fr' ? 'Ingrédients 100% naturels' : '100% natural ingredients'}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full mr-3 animate-pulse-custom" style={{ animationDelay: '0.5s' }}></div>
+                  <span className="text-orange-700 font-medium">
+                    {language === 'fr' ? 'Cuisson parfaite' : 'Perfect cooking'}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full mr-3 animate-pulse-custom" style={{ animationDelay: '1s' }}></div>
+                  <span className="text-orange-700 font-medium">
+                    {language === 'fr' ? 'Recettes uniques' : 'Unique recipes'}
                   </span>
                 </div>
               </div>
-            </Link>
-          ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <Link
-            to="/products"
-            className="inline-block border-2 border-plant-600 text-plant-600 hover:bg-plant-600 hover:text-white px-8 py-3 rounded-md font-medium transition-colors duration-300"
-          >
-            {language === 'fr' ? 'Voir tous les produits' : 'View all products'}
-          </Link>
+              
+              <Link
+                to="/about"
+                className="inline-block bg-gradient-to-r from-orange-600 to-red-600 text-white px-8 py-4 rounded-lg btn-hover-effect font-bold text-lg shadow-lg"
+              >
+                {t.home.promise.cta}
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-plant-50">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
-          <div className="relative">
-            <img
-              src="images/produits/groupe.webp"
-              alt="Soins naturels"
-              className="rounded-lg shadow-lg w-full h-auto"
-              loading="lazy"
-            />
+      {/* Section de statistiques avec animations */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center card-hover-effect p-6 rounded-lg bg-orange-50">
+            <div className="text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom">100%</div>
+            <div className="text-orange-800 font-semibold">{language === 'fr' ? 'Naturel' : 'Natural'}</div>
           </div>
-          <div className="mt-10 lg:mt-0 lg:pl-8">
-            <h2 className="text-3xl font-serif font-bold text-plant-800 mb-4">{t.home.promise.title}</h2>
-            <p className="text-lg text-plant-700 mb-6">
-              {t.home.promise.description}
-            </p>
-            <Link
-              to="/about"
-              className="inline-block bg-plant-600 text-white px-8 py-3 rounded-md hover:bg-plant-700 transition-colors"
-            >
-              {t.home.promise.cta}
-            </Link>
+          <div className="text-center card-hover-effect p-6 rounded-lg bg-orange-50">
+            <div className="text-orange-800 font-semibold">{language === 'fr' ? 'Disponible' : 'Available'}</div>
+            <div className="text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom" style={{ animationDelay: '0.5s' }}>Du Mardi au Dimanche de 18h à 23h</div>
+          </div>
+          <div className="text-center card-hover-effect p-6 rounded-lg bg-orange-50">
+            <div className="text-4xl font-bold text-orange-600 mb-2 animate-pulse-custom" style={{ animationDelay: '1s' }}>5★</div>
+            <div className="text-orange-800 font-semibold">{language === 'fr' ? 'Satisfaction' : 'Satisfaction'}</div>
           </div>
         </div>
       </section>

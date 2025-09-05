@@ -1,5 +1,12 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { Product } from '../data/products';
+
+// Type minimal pour les articles du panier (désolidarisé des anciens produits)
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image?: string;
+}
 
 interface CartItem {
   product: Product;

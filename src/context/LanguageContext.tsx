@@ -21,7 +21,6 @@ interface Translations {
         subtitle: string;
         cta: string;
       };
-      featured: string;
       promise: {
         title: string;
         description: string;
@@ -62,12 +61,6 @@ interface Translations {
       description: string;
       cta: string;
     };
-    products: {
-      title: string;
-      searchResult: string;
-      noResults: string;
-      clearSearch: string;
-    };
   };
 }
 
@@ -80,9 +73,9 @@ export const translations: Translations = {
   fr: {
     nav: {
       about: 'À propos',
-      products: 'Produits',
+      products: 'Commander',
       advice: 'Conseils',
-      search: 'Rechercher des produits...',
+      search: 'Rechercher...',
       closeSearch: 'Fermer la recherche',
       openSearch: 'Ouvrir la recherche',
       submitSearch: 'Rechercher',
@@ -90,64 +83,57 @@ export const translations: Translations = {
     },
     home: {
       hero: {
-        title: "Produits de Soin Naturels",
-        subtitle: "Découvrez notre sélection de produits de soin naturels et biologiques",
-        cta: "Acheter"
+        title: "Poulet Rôtis Traditionnel",
+        subtitle: "Découvrez notre poulet rôtis, tendre et savoureux, préparé selon nos recettes secrètes",
+        cta: "Commander Maintenant"
       },
-      featured: "Produits Vedettes",
       promise: {
         title: "Notre Promesse",
-        description: "Nous nous engageons à vous fournir des produits de soin naturels de la plus haute qualité, sourcés de manière responsable et fabriqués avec amour.",
+        description: "Nous nous engageons à vous fournir le poulet rôtis le plus tendre et savoureux, cuit a la perfection.",
         cta: "En Savoir Plus"
       }
     },
     about: {
-      title: "À propos de SUMAYA COSMETICS",
+      title: "À propos d'O'ROTIS",
       story: {
         title: "Notre Histoire",
-        p1: "Fondée en 2020, SUMAYA COSMETICS est née d'une passion pour les soins naturels...",
-        p2: "Nous croyons que les soins de la peau doivent être à la fois efficaces et doux..."
+        p1: "Fondée en 2025, O'ROTIS est née d'une passion pour la cuisine traditionnelle et le poulet rôtis.",
+        p2: "Nous croyons que la qualité du poulet rôtis dépend de la sélection des ingrédients et de la méthode de cuisson."
       },
       values: {
         title: "Nos Valeurs",
         natural: {
           title: "Ingrédients Naturels",
-          description: "Nous sélectionnons les ingrédients naturels de la plus haute qualité..."
+          description: "Nous sélectionnons uniquement des poulets fermiers élevés en plein air, nourris naturellement."
         },
         sustainability: {
-          title: "Durabilité",
-          description: "Notre engagement envers l'environnement s'étend de nos ingrédients à nos emballages..."
+          title: "Tradition",
+          description: "Notre engagement envers la perfection s'étend de nos méthodes de cuisson hors du commun et à nos recettes secrètes."
         },
         transparency: {
           title: "Transparence",
-          description: "Nous croyons en la transparence totale concernant nos ingrédients et nos processus..."
+          description: "Nous croyons en la transparence totale concernant nos ingrédients et nos processus de cuisson."
         }
       },
       quality: {
         title: "Notre Engagement pour la Qualité",
-        p1: "Chaque produit SUMAYA COSMETICS subit des tests rigoureux...",
-        p2: "Nous ne faisons jamais de compromis sur la qualité..."
+        p1: "Chaque poulet O'ROTIS est sélectionné avec soin et cuit selon nos standards rigoureux.",
+        p2: "Nous ne faisons jamais de compromis sur la qualité et nous nous engageons à maintenir l'excellence."
       }
     },
     advice: {
-      title: "Conseils Skincare",
-      subtitle: "Besoin de conseils personnalisés ?",
-      description: "Nos experts en soins de la peau sont là pour vous aider...",
-      cta: "Discutez avec un spécialiste"
-    },
-    products: {
-      title: "Nos Produits",
-      searchResult: 'Résultats pour "{query}" ({count} articles)',
-      noResults: "Aucun produit ne correspond à votre recherche.",
-      clearSearch: "Réinitialiser la recherche"
+      title: "Conseils Culinaires",
+      subtitle: "Besoin de conseils pour déguster ?",
+      description: "Nos experts culinaires sont là pour vous aider à tirer le meilleur parti de votre poulet rôtis.",
+      cta: "Discuter avec un spécialiste"
     }
   },
   en: {
     nav: {
       about: 'About',
-      products: 'Products',
+      products: 'Order',
       advice: 'Advice',
-      search: 'Search products...',
+      search: 'Search...',
       closeSearch: 'Close search',
       openSearch: 'Open search',
       submitSearch: 'Search',
@@ -155,56 +141,49 @@ export const translations: Translations = {
     },
     home: {
       hero: {
-        title: "Natural Care Products",
-        subtitle: "Discover our selection of natural and organic care products",
-        cta: "Shop Now"
+        title: "Traditional Roasted Chicken",
+        subtitle: "Discover our roasted chicken, tender and flavorful, prepared according to our secret recipes",
+        cta: "Order Now"
       },
-      featured: "Featured Products",
       promise: {
         title: "Our Promise",
-        description: "We are committed to providing you with the highest quality...",
+        description: "We are committed to providing you with the most tender and flavorful roasted chicken, cooked at perfection",
         cta: "Learn More"
       }
     },
     about: {
-      title: "About SUMAYA COSMETICS",
+      title: "About O'ROTIS",
       story: {
         title: "Our Story",
-        p1: "Founded in 2020, SUMAYA COSMETICS was born from a passion...",
-        p2: "We believe that skincare should be both effective and gentle..."
+        p1: "Founded in 2025, O'ROTIS was born from a passion for traditional cooking and roasted chicken.",
+        p2: "We believe that the quality of roasted chicken depends on ingredient selection and cooking method."
       },
       values: {
         title: "Our Values",
         natural: {
           title: "Natural Ingredients",
-          description: "We source the highest quality natural ingredients..."
+          description: "We select only free-range farm chickens, naturally fed and raised in open spaces."
         },
         sustainability: {
-          title: "Sustainability",
-          description: "Our commitment to the environment extends..."
+          title: "Tradition",
+          description: "Our commitment to perfection extends from our cooking methods to our secret recipes."
         },
         transparency: {
           title: "Transparency",
-          description: "We believe in being completely transparent..."
+          description: "We believe in being completely transparent about our ingredients and cooking processes."
         }
       },
       quality: {
         title: "Our Commitment to Quality",
-        p1: "Every SUMAYA COSMETICS product undergoes rigorous testing...",
-        p2: "We never compromise on quality and are committed to innovation..."
+        p1: "Every O'ROTIS chicken is carefully selected and cooked according to our rigorous standards.",
+        p2: "We never compromise on quality and are committed to maintaining excellence."
       }
     },
     advice: {
-      title: "Skincare Advice",
-      subtitle: "Need Personalized Advice?",
-      description: "Our skincare experts are here to help you...",
+      title: "Culinary Advice",
+      subtitle: "Need advice on how to enjoy?",
+      description: "Our culinary experts are here to help you get the most out of your roasted chicken.",
       cta: "Chat with a Specialist"
-    },
-    products: {
-      title: "Our Products",
-      searchResult: 'Showing results for "{query}" ({count} items)',
-      noResults: "No products found matching your search.",
-      clearSearch: "Clear search"
     }
   }
 };
