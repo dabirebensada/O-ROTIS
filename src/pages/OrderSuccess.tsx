@@ -7,11 +7,11 @@ const OrderSuccess = () => {
 
   return (
     <div className="pt-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="text-center">
           {/* Icône de succès avec animation */}
-          <div className="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100 mb-8 animate-scale-in">
-            <CheckCircle className="h-12 w-12 text-green-600 animate-pulse-custom" />
+          <div className="mx-auto flex items-center justify-center h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-green-100 mb-6 sm:mb-8 animate-scale-in">
+            <CheckCircle className="h-10 w-10 sm:h-12 sm:w-12 text-green-600 animate-pulse-custom" />
           </div>
 
           {/* Titre principal */}

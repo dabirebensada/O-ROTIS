@@ -131,9 +131,18 @@
   transform-origin: center;
 }
 
-.image-hover-effect:hover {
+.image-hover-effect:hover,
+.image-hover-effect:active {
   transform: scale(1.05) rotate(1deg);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Effet touch pour mobile - MÊME EFFET QUE PC */
+@media (max-width: 768px) {
+  .image-hover-effect:active {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
 }
 
 /* Effets pour les cartes */
@@ -142,9 +151,18 @@
   transform: translateY(0);
 }
 
-.card-hover-effect:hover {
+.card-hover-effect:hover,
+.card-hover-effect:active {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet touch pour les cartes sur mobile - MÊME EFFET QUE PC */
+@media (max-width: 768px) {
+  .card-hover-effect:active {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
 }
 
 /* Effets pour les boutons */
@@ -169,9 +187,18 @@
   left: 100%;
 }
 
-.btn-hover-effect:hover {
+.btn-hover-effect:hover,
+.btn-hover-effect:active {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet touch pour les boutons sur mobile - MÊME EFFET QUE PC */
+@media (max-width: 768px) {
+  .btn-hover-effect:active {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Effets de parallaxe légers */
@@ -245,14 +272,110 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Responsive improvements */
+/* Responsive improvements - Optimisations Mobile */
 @media (max-width: 768px) {
-  .image-hover-effect:hover {
-    transform: scale(1.02);
+  /* Les effets hover sont maintenant identiques à PC via :active */
+  
+  /* Touch-friendly */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
   }
   
-  .card-hover-effect:hover {
-    transform: translateY(-4px);
+  /* Amélioration de la lisibilité */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Animations optimisées pour mobile - Garder le dynamisme */
+  * {
+    transition-duration: 0.3s;
+  }
+  
+  /* Garder toutes les animations identiques sur mobile */
+  @media (max-width: 480px) {
+    .animate-float {
+      animation-duration: 3s; /* Même durée que PC */
+    }
+    
+    .animate-pulse-custom {
+      animation-duration: 2s; /* Même durée que PC */
+    }
+  }
+}
+
+/* Optimisations pour très petits écrans */
+@media (max-width: 480px) {
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+  
+  .text-4xl {
+    font-size: 1.875rem;
+  }
+  
+  .text-5xl {
+    font-size: 2.25rem;
+  }
+  
+  .text-6xl {
+    font-size: 2.5rem;
+  }
+  
+  /* Réduction des espacements */
+  .py-16 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .py-20 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+/* Améliorations tactiles pour mobile */
+@media (max-width: 768px) {
+  /* Feedback tactile pour tous les éléments interactifs */
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Effets spéciaux pour les icônes sociales */
+  a[href*="tiktok"]:active,
+  a[href*="facebook"]:active,
+  a[href*="whatsapp"]:active {
+    transform: scale(1.1) rotate(12deg);
+    transition: transform 0.2s ease;
+  }
+  
+  /* Effets spéciaux pour les liens de navigation */
+  a[href*="/products"]:active,
+  a[href*="/about"]:active,
+  a[href*="/advice"]:active {
+    transform: translateX(8px);
+    transition: transform 0.2s ease;
+  }
+  
+  /* Amélioration des transitions pour le touch */
+  .animate-fade-in-up,
+  .animate-fade-in-left,
+  .animate-fade-in-right,
+  .animate-scale-in,
+  .animate-pulse-custom,
+  .animate-float,
+  .animate-shimmer {
+    animation-fill-mode: both;
+  }
+  
+  /* Optimisation des animations pour les performances */
+  .scroll-reveal {
+    will-change: transform, opacity;
   }
 }
 

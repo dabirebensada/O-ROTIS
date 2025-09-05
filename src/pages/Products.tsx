@@ -201,20 +201,20 @@ const Products = () => {
   }
 
   return (
-    <div className="pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12 animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-orange-800 mb-6 text-shadow">
+    <div className="pt-16 sm:pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-orange-800 mb-4 sm:mb-6 text-shadow">
             {language === 'fr' ? 'Commander votre Poulet Rôtis' : 'Order your Roasted Chicken'}
           </h1>
-          <p className="text-xl text-orange-600 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl text-orange-600 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             {language === 'fr' 
               ? 'Découvrez notre poulet rôtis. Tendre, savoureux et préparé selon nos recettes secrètes.'
               : 'Discover our roasted chicken. Tender, flavorful and prepared according to our secret recipes.'}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Image du produit avec animations */}
           <div className="relative group animate-fade-in-left">
             <img
@@ -224,7 +224,7 @@ const Products = () => {
               loading="eager"
             />
             {/* Badge de qualité animé */}
-            <div className="absolute -top-4 -right-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse-custom shadow-lg">
+            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold animate-pulse-custom shadow-lg">
               {language === 'fr' ? 'UNIQUE' : 'UNIQUE'}
             </div>
             {/* Effet de brillance au hover */}
@@ -255,18 +255,24 @@ const Products = () => {
               ))}
             </div>
 
-            <div className="text-3xl font-bold text-orange-800 mb-8 animate-scale-in" style={{ animationDelay: '0.7s' }}>
-              <span className="gradient-animated bg-clip-text text-transparent">4.000 FCFA</span>
+            <div className="mb-8 animate-scale-in" style={{ animationDelay: '0.7s' }}>
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg inline-block">
+                <div className="text-3xl font-bold">4.000 FCFA</div>
+                <div className="text-sm opacity-90">{language === 'fr' ? 'Prix unitaire' : 'Unit price'}</div>
+              </div>
             </div>
 
-            {/* Bouton pour lancer le chat avec effet amélioré */}
+            {/* Bouton pour lancer le chat avec effet amélioré - Optimisé Mobile */}
             <button
               onClick={handleStartOrder}
-              className="w-full lg:w-auto bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 text-xl font-bold rounded-lg btn-hover-effect shadow-lg hover:shadow-orange-600/30 flex items-center justify-center gap-3 mx-auto lg:mx-0 animate-fade-in-up"
-              style={{ animationDelay: '0.8s' }}
+              className="w-full lg:w-auto bg-orange-600 hover:bg-orange-700 text-white px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl font-bold rounded-lg btn-hover-effect shadow-lg hover:shadow-orange-600/30 flex items-center justify-center gap-3 mx-auto lg:mx-0 animate-fade-in-up touch-manipulation"
+              style={{ 
+                animationDelay: '0.8s',
+                minHeight: '48px'
+              }}
             >
-              <MessageCircle size={24} className="animate-pulse-custom" />
-              {language === 'fr' ? 'Discuter avec l\'assistant' : 'Chat with our assistant'}
+              <MessageCircle size={20} className="animate-pulse-custom sm:w-6 sm:h-6" />
+              <span className="text-sm sm:text-lg">{language === 'fr' ? 'Discuter avec l\'assistant' : 'Chat with our assistant'}</span>
             </button>
 
             <p className="text-orange-600 mt-4 text-sm animate-fade-in-up" style={{ animationDelay: '1s' }}>

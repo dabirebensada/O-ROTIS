@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../context/LanguageContext';
@@ -66,12 +66,13 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Menu mobile toggle */}
+          {/* Menu mobile toggle - Optimisé Touch */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-orange-800 hover:text-orange-600 transition-all duration-300 transform hover:scale-110"
+              className="text-orange-800 hover:text-orange-600 transition-all duration-300 transform hover:scale-110 p-2 -m-2 touch-manipulation"
               aria-label="Toggle mobile menu"
+              style={{ minWidth: '44px', minHeight: '44px' }}
             >
               <svg
                 className={`w-6 h-6 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`}
@@ -94,24 +95,29 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Menu mobile */}
+        {/* Menu mobile - Optimisé Touch */}
         <div className={`md:hidden transition-all duration-300 overflow-hidden ${
           isMobileMenuOpen 
             ? 'max-h-64 opacity-100' 
             : 'max-h-0 opacity-0'
         }`}>
-          <div className="py-4 space-y-4 border-t border-orange-200/50">
+          <div className="py-4 space-y-2 border-t border-orange-200/50">
             {navLinks.map((link, index) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block text-orange-800 hover:text-orange-600 transition-all duration-300 transform hover:translate-x-2 ${
+                className={`block text-orange-800 hover:text-orange-600 transition-all duration-300 transform hover:translate-x-2 py-3 px-4 rounded-lg touch-manipulation ${
                   location.pathname === link.to 
-                    ? 'text-orange-600 font-semibold' 
-                    : ''
+                    ? 'text-orange-600 font-semibold bg-orange-50' 
+                    : 'hover:bg-orange-50'
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  minHeight: '44px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
               >
                 {link.label}
               </Link>

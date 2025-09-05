@@ -6,12 +6,12 @@ const Advice = () => {
 
   return (
     <div className="pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-serif font-bold text-orange-800 mb-8 animate-fade-in-up text-shadow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-orange-800 mb-6 sm:mb-8 animate-fade-in-up text-shadow">
           {t.advice.title}
         </h1>
         
-        <div className="bg-white p-8 rounded-lg shadow-md card-hover-effect animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <div className="bg-white p-4 sm:p-6 lg:p-8 rounded-lg shadow-md card-hover-effect animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <h2 className="text-2xl font-serif font-bold text-orange-700 mb-4">{t.advice.subtitle}</h2>
           <p className="text-orange-600 mb-6 leading-relaxed">
             {t.advice.description}

@@ -36,8 +36,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       return;
     }
 
-
-    if (imgRef.current) {
+    const currentImgRef = imgRef.current;
+    
+    if (currentImgRef) {
       const handleIntersect = (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -53,19 +54,17 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         });
       };
 
-
       observerRef.current = new IntersectionObserver(handleIntersect, {
         rootMargin: '200px',
         threshold: 0.01,
       });
 
-      observerRef.current.observe(imgRef.current);
+      observerRef.current.observe(currentImgRef);
     }
 
-
     return () => {
-      if (observerRef.current && imgRef.current) {
-        observerRef.current.unobserve(imgRef.current);
+      if (observerRef.current && currentImgRef) {
+        observerRef.current.unobserve(currentImgRef);
       }
     };
   }, []);

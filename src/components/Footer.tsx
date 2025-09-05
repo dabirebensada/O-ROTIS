@@ -15,7 +15,7 @@ const Footer = () => {
     fr: {
       about: {
         title: 'À propos d\'O\'ROTIS',
-        description: 'Poulet rôtis traditionnel, tendre et savoureux. Découvrez notre recette secrète travaillée a la perfection.'
+        description: 'Poulet rôtis, tendre et savoureux. Découvrez notre recette secrète travaillée a la perfection.'
       },
       quickLinks: {
         title: 'Liens rapides',
@@ -39,7 +39,7 @@ const Footer = () => {
     en: {
       about: {
         title: 'About O\'ROTIS',
-        description: 'Traditional wood-fired roasted chicken, tender and flavorful. Discover our secret recipe worked on perfection.'
+        description: 'Roasted chicken, tender and flavorful. Discover our secret recipe worked on perfection.'
       },
       quickLinks: {
         title: 'Quick Links',

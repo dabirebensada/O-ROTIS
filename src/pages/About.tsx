@@ -27,13 +27,13 @@ const About = () => {
 
   return (
     <div className="pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-serif font-bold text-orange-800 mb-8 animate-fade-in-up text-shadow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-orange-800 mb-6 sm:mb-8 animate-fade-in-up text-shadow">
           {t.about.title}
         </h1>
         
         {/* Section Histoire avec animations */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 scroll-reveal">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 scroll-reveal">
           <div className="relative group">
             <img
               src="images/produits/histoire.png"
@@ -42,7 +42,7 @@ const About = () => {
               loading="lazy"
             />
             {/* Overlay décoratif */}
-            <div className="absolute inset-0 bg-gradient-to-t from-orange-900/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-orange-900/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300"></div>
           </div>
           
           <div className="animate-fade-in-right">
@@ -113,13 +113,13 @@ const About = () => {
                   <span className="text-white text-lg">👨‍🍳</span>
                 </div>
                 <h3 className="text-xl font-bold text-orange-800">
-                  {language === 'fr' ? 'Chefs Expérimentés' : 'Experienced Chefs'}
+                  {language === 'fr' ? 'Personnel Expérimenté' : 'Experienced Personnel'}
                 </h3>
               </div>
               <p className="text-orange-600">
                 {language === 'fr' 
-                  ? 'Nos chefs maîtrisent parfaitement l\'art de la cuisson traditionnelle du poulet rôti.'
-                  : 'Our chefs perfectly master the art of traditional roasted chicken cooking.'}
+                  ? 'Notre équipe maîtrise parfaitement l\'art de la cuisson traditionnelle du poulet rôti.'
+                  : 'Our team perfectly masters the art of traditional roasted chicken cooking.'}
               </p>
             </div>
             

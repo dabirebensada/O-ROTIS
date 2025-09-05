@@ -83,7 +83,7 @@ export const translations: Translations = {
     },
     home: {
       hero: {
-        title: "Poulet Rôtis Traditionnel",
+        title: "Bienvenue dans notre Univers",
         subtitle: "Découvrez notre poulet rôtis, tendre et savoureux, préparé selon nos recettes secrètes",
         cta: "Commander Maintenant"
       },
@@ -97,7 +97,7 @@ export const translations: Translations = {
       title: "À propos d'O'ROTIS",
       story: {
         title: "Notre Histoire",
-        p1: "Fondée en 2025, O'ROTIS est née d'une passion pour la cuisine traditionnelle et le poulet rôtis.",
+        p1: "Fondée en 2025, O'ROTIS est née d'une passion pour l'innovation gustative et le poulet rôtis.",
         p2: "Nous croyons que la qualité du poulet rôtis dépend de la sélection des ingrédients et de la méthode de cuisson."
       },
       values: {
@@ -141,7 +141,7 @@ export const translations: Translations = {
     },
     home: {
       hero: {
-        title: "Traditional Roasted Chicken",
+        title: "Welcome to our Universe",
         subtitle: "Discover our roasted chicken, tender and flavorful, prepared according to our secret recipes",
         cta: "Order Now"
       },
@@ -155,7 +155,7 @@ export const translations: Translations = {
       title: "About O'ROTIS",
       story: {
         title: "Our Story",
-        p1: "Founded in 2025, O'ROTIS was born from a passion for traditional cooking and roasted chicken.",
+        p1: "Founded in 2025, O'ROTIS was born from a passion for gustative innovation and roasted chicken.",
         p2: "We believe that the quality of roasted chicken depends on ingredient selection and cooking method."
       },
       values: {
