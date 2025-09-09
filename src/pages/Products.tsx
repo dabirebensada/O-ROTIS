@@ -119,7 +119,7 @@ const Products = () => {
           <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
             <Standard
               typebot="orotisbf"
-              apiHost="https://typebot.io"
+              apiHost="https://typebot.co"
               style={{ width: "100%", height: "600px" }}
             />
           </div>
