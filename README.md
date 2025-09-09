@@ -40,12 +40,55 @@ npm install
 npm run dev
 \`\`\`
 
-### Scripts Disponibles
+## 🚀 Commandes Disponibles
+
+### Développement Local
 \`\`\`bash
-npm run dev      # Serveur de développement
-npm run build    # Build de production
-npm run preview  # Prévisualisation du build
-npm run lint     # Vérification du code
+# Installer les dépendances
+npm install
+
+# Démarrer le serveur de développement (http://localhost:5173)
+npm run dev
+
+# Vérification du code (ESLint)
+npm run lint
+\`\`\`
+
+### Production
+\`\`\`bash
+# Build de production (génère le dossier dist/)
+npm run build
+
+# Build de production optimisé
+npm run build:prod
+
+# Prévisualisation du build de production (http://localhost:4173)
+npm run preview
+
+# Démarrer le serveur de production (http://localhost:3000)
+npm start
+\`\`\`
+
+### Sécurité
+\`\`\`bash
+# Audit de sécurité des dépendances
+npm run security:audit
+
+# Vérification de sécurité complète
+npm run security:check
+\`\`\`
+
+### Maintenance
+\`\`\`bash
+# Nettoyer le dossier dist
+Remove-Item -Recurse -Force dist
+
+# Mise à jour des dépendances
+npm update
+
+# Audit des vulnérabilités
+npm audit
+npm audit fix
 \`\`\`
 
 ## 📁 Structure du Projet
