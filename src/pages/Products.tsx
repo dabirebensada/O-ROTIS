@@ -118,7 +118,7 @@ const Products = () => {
           {/* Chat Typebot */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
             <Standard
-              typebot="ogouterorder"
+              typebot="orotisbf"
               apiHost="https://typebot.io"
               style={{ width: "100%", height: "600px" }}
             />
