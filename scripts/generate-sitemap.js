@@ -26,28 +26,28 @@ const PAGES = [
     description: 'Page d\'accueil O\'ROTIS'
   },
   {
-    path: '/produits',
+    path: '/products',
     lastmod: new Date().toISOString().split('T')[0],
     changefreq: 'monthly',
     priority: '0.9',
     description: 'Page des produits O\'ROTIS'
   },
   {
-    path: '/a-propos',
+    path: '/about',
     lastmod: new Date().toISOString().split('T')[0],
     changefreq: 'monthly',
     priority: '0.7',
     description: 'À propos d\'O\'ROTIS'
   },
   {
-    path: '/conseils',
+    path: '/advice',
     lastmod: new Date().toISOString().split('T')[0],
     changefreq: 'monthly',
     priority: '0.6',
     description: 'Conseils culinaires O\'ROTIS'
   },
   {
-    path: '/commande-succes',
+    path: '/order-success',
     lastmod: new Date().toISOString().split('T')[0],
     changefreq: 'yearly',
     priority: '0.3',

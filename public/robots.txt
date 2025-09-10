@@ -8,12 +8,12 @@ Allow: /
 Sitemap: https://orotisbf.com/sitemap.xml
 
 # Pages importantes
-Allow: /produits
-Allow: /a-propos
-Allow: /conseils
+Allow: /products
+Allow: /adout
+Allow: /advice
 
 # Pages de confirmation (optionnel)
-Allow: /commande-succes
+Allow: /order-success
 
 # Fichiers statiques
 Allow: /assets/
