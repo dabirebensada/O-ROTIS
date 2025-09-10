@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "security:audit": "node scripts/security-audit.js",
     "security:check": "npm audit --audit-level=moderate",
-    "start": "node server.js"
+    "start": "node server.js",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "build:with-sitemap": "npm run sitemap && npm run build"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.13.5",

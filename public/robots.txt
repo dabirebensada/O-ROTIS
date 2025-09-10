@@ -1,0 +1,31 @@
+# Robots.txt pour O'ROTIS - orotisbf.com
+# Configuration pour les moteurs de recherche
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://orotisbf.com/sitemap.xml
+
+# Pages importantes
+Allow: /produits
+Allow: /a-propos
+Allow: /conseils
+
+# Pages de confirmation (optionnel)
+Allow: /commande-succes
+
+# Fichiers statiques
+Allow: /assets/
+Allow: /images/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Délai entre les requêtes (optionnel)
+Crawl-delay: 1
